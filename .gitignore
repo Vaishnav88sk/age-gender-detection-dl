@@ -1,0 +1,17 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+UTKFace/
+utkface*
+crop*
+training/
+models/
+
+*.zip
+*.tar
+
+.DS_Store
+.env
