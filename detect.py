@@ -23,7 +23,7 @@ if not os.path.exists(MODEL_PATH):
     url = "https://drive.google.com/uc?id=1lYC0Q9SmlYHwJKjb6NeG1HVZO_HaFUrF"
     gdown.download(url, MODEL_PATH, quiet=False)
 
-model = load_model(MODEL_PATH)
+model = load_model(MODEL_PATH, compile=False)
 
 def predict_age_gender(face_img):
     try:
