@@ -23,16 +23,7 @@ if not os.path.exists(MODEL_PATH):
     url = "https://drive.google.com/uc?id=1lYC0Q9SmlYHwJKjb6NeG1HVZO_HaFUrF"
     gdown.download(url, MODEL_PATH, quiet=False)
 
-try:
-    model = load_model(MODEL_PATH, compile=False, safe_mode=False)
-except Exception as e:
-    print("⚠️ Standard load failed, retrying with custom_objects...")
-    model = load_model(
-        MODEL_PATH,
-        compile=False,
-        safe_mode=False,
-        custom_objects={}
-    )
+model = load_model(MODEL_PATH, compile=False)
 
 def predict_age_gender(face_img):
     try:
