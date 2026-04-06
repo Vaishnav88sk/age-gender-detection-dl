@@ -1,16 +1,8 @@
 import os
 import cv2
 import numpy as np
-from keras.models import load_model
+from tensorflow.keras.models import load_model
 import gdown
-
-os.environ["CUDA_VISIBLE_DEVICES"] = "-1"   # disable GPU
-os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"    # reduce logs
-
-import tensorflow as tf
-
-tf.config.threading.set_intra_op_parallelism_threads(1)
-tf.config.threading.set_inter_op_parallelism_threads(1)
 
 MODEL_PATH = "models/age_gender_model.keras"
 
@@ -23,7 +15,7 @@ if not os.path.exists(MODEL_PATH):
     url = "https://drive.google.com/uc?id=1lYC0Q9SmlYHwJKjb6NeG1HVZO_HaFUrF"
     gdown.download(url, MODEL_PATH, quiet=False)
 
-model = load_model(MODEL_PATH, compile=False)
+model = load_model(MODEL_PATH)
 
 def predict_age_gender(face_img):
     try:
@@ -37,7 +29,7 @@ def predict_age_gender(face_img):
         face_img = face_img.astype("float32") / 255.0
 
         # Expand dims
-        face_img = np.expand_dims(face_img, axis=0).astype("float32")
+        face_img = np.expand_dims(face_img, axis=0)
 
         # Predict
         pred = model.predict(face_img, verbose=0)

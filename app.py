@@ -7,7 +7,7 @@ from collections import deque
 
 st.title("👤 Age & Gender Detection (Custom DL Model)")
 
-option = "Image Upload"
+option = st.radio("Select Input", ["Image Upload", "Webcam"])
 
 # -------- IMAGE --------
 if option == "Image Upload":
