@@ -4,6 +4,14 @@ import numpy as np
 from tensorflow.keras.models import load_model
 import gdown
 
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"   # disable GPU
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"    # reduce logs
+
+import tensorflow as tf
+
+tf.config.threading.set_intra_op_parallelism_threads(1)
+tf.config.threading.set_inter_op_parallelism_threads(1)
+
 MODEL_PATH = "models/age_gender_model.keras"
 
 # 🔥 Auto download model if not exists
@@ -29,7 +37,7 @@ def predict_age_gender(face_img):
         face_img = face_img.astype("float32") / 255.0
 
         # Expand dims
-        face_img = np.expand_dims(face_img, axis=0)
+        face_img = np.expand_dims(face_img, axis=0).astype("float32")
 
         # Predict
         pred = model.predict(face_img, verbose=0)
