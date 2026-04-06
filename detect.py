@@ -1,7 +1,7 @@
 import os
 import cv2
 import numpy as np
-from tensorflow.keras.models import load_model
+from keras.models import load_model
 import gdown
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"   # disable GPU
